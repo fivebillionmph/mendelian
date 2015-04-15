@@ -2,7 +2,7 @@
 
 function Organism(genome){
   this.genome = genome;	// genome is array of 2 arrays, one for mother and one for father
-  this.expressions = Attributes(this.genome, window["game_objects"].phenotypes);
+  this.expressions = Expressions(this.genome, window["game_objects"].phenotypes);
 }
 
 function Phenotype(genes, phenotypes, rules, name=null){

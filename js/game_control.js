@@ -7,8 +7,34 @@
     this.seed_pouches = [];
     this.plots = [];
 
-    // genotype items
-    this.phenotypes = [];
+    // genotype items, custom designed for testing. use a method of random generation for picking from a preconfigured set for later
+    // for testing, there are 4 phenotypes: height, spotted, flower color, seed pod color
+    // height: tall/short - simple dominance A- = tall, aa = short
+    // spotted: co dominance - B-cc = striped, --C- = spotted, B-C- = striped and spotted, bbcc = plain
+    // flower color: epistasis - D---- = red, ddE- = blue; ddee = white
+    // seed pod color: incomplete dominance - FF = red, Ff = pink, ff = white
+    this.phenotypes = [
+      // height: tall/short - simple dominance A- = tall, aa = short
+      new Phenotype(
+        [0],	// only uses first gene
+        
+      ),
+
+      // spotted: co dominance - B-cc = striped, --C- = spotted, B-C- = striped and spotted, bbcc = plain
+      new Phenotype(
+
+      ),
+
+      // flower color: epistasis - D---- = red, ddE- = blue; ddee = white
+      new Phenotype(
+
+      ),
+
+      // seed pod color: incomplete dominance - FF = red, Ff = pink, ff = white
+      new Phenotype(
+
+      )
+    ];
     this.rules = [];
     this.subrules = [];
 
@@ -41,12 +67,13 @@ function createSeedPouch(organism1, organism2){
 }
 
 function combineGenomes(genome1, genome2){
-  crossing_over = .15;	// chance of crossing over
+  var crossing_over = .15;	// chance of crossing over
   if(genome1[0].length != genome1[1].length || genome1[0].length != genome2[0].length || genome1[0].length != genome2[1].length)
     throw new Error("genome lengths do not match, something went terribly wrong");
-  chromosome1 = extractRandomChromosome(genome1, crossing_over);
-  chromosome2 = extractRandomChromosome(genome2, crossing_over);
-  new_genome = [chromosome1, chromosome2];
+  var chromosome1 = extractRandomChromosome(genome1, crossing_over);
+  var chromosome2 = extractRandomChromosome(genome2, crossing_over);
+  var new_genome = [chromosome1, chromosome2];
+  return new_genome;
 }
 
 function extractRandomChromosome(genome, crossing_over){
