@@ -67,18 +67,38 @@ function randomInt(min, max){	// min inclusive, max exclusive
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function getExpression(phenotype, genotype){
-  for(var i = 0; i < phenotype.rules.length; i++){
+function getExpression(phenotype, genome){
+  var genes = phenotype.genes;
+  var i = 0;
+  for(; i < phenotype.rules.length; i++){
     var rule = phenotype.rules[i];
     for(var j = 0; j < rule.subrule.length; j++){
       var subrule = rule.subrule[j];
-      if(subruleTrue(subrule, genotype)){
-
+      if(subruleTrue(subrule, genes, genome)){
+        return phenotype.phenotypes[i];	// since or delimited, immediately return true
       }
     }
   }
+  return phenotype.phenotypes[i+1];	// default last to last phenotype
 }
 
-function subruleTrue(subrule, genotype){
+function subruleTrue(subrule, genes, genome){
+  var gene_index = subrule.gene_index;	// array of gene indexes corresponding to an index in genome
+  var ncopies = subrule.ncopies;	// array of ncopies
+  var allele_index = subrule.allele_index;	// array of which allele there needs to be ncopies of
+  if(gene_index.length != ncopies.length || gene_index.length != allele_index.length) throw new Error("subrule arrays do not align");
 
+  var len = gene_index.length;
+  for(var i = 0; i < len; i++){
+    var gene_index_i = gene_index[i];
+    var ncopies_i = ncopies[i];
+    var allele_index_i = allele_index[i];
+
+    if(gene_index_i >= genome[0].length) throw new Error("out of bounds gene_index in genome");
+    var genome_i = [genome[0][gene_index_i], genome[1][gene_index_i]];
+    var ncopies_count = genome_i.filter(function(x){ return x == ncopies_i; }).length;
+    if(allele_index_i == 3 && ncopies_count == 0) return false;	// since and delimited, immediately return false
+    if(allele_index_i != ncopies_count) return false;
+  }
+  return true;
 }

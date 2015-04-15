@@ -6,14 +6,9 @@ function Organism(genome){
 }
 
 function Phenotype(genes, phenotypes, rules, name=null){
-  this.genes = genes;	// array of genes
+  this.genes = genes;	// array of gene indexes corresponding to the index in Organism.genome
   this.phenotypes = phenotypes;	// array of possible phenotype expressions
   this.rules = rules;	// array of Rule, rules.length == phenotypes.length - 1
-  this.name = name;
-}
-
-function Genotype(nalleles, name=null){
-  this.nalleles = nalleles;
   this.name = name;
 }
 
