@@ -9,7 +9,6 @@
 
     // genotype items
     this.phenotypes = [];
-    this.genotypes = [];
     this.rules = [];
     this.subrules = [];
 
