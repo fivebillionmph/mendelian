@@ -1,6 +1,6 @@
 (function(){
 
-  function gameObjects() = {
+  function gameObjects(){
     // goal: get rid of this object. somehow pass the responsibility of holding each of these arrays to other locations
 
     // menu items
