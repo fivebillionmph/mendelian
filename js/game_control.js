@@ -1,10 +1,15 @@
 (function(){
 
   function gameObjects(){
-    // goal: get rid of this object. somehow pass the responsibility of holding each of these arrays to other locations
 
     // menu items
-    this.seed_pouches = [];
+    this.seed_pouches = [
+      new SeedPouch(
+        new Organism([0,0,1,0,0,1]),
+        new Organism([1,1,1,0,0,0])
+      )
+    ];
+
     this.plots = [];
 
     // genotype items, custom designed for testing. use a method of random generation for picking from a preconfigured set for later
@@ -72,7 +77,9 @@
 }());
 
 function createSeedPouch(organism1, organism2){
-  return new SeedPouch(organism1, organism2);
+  var seed_pouch = new SeedPouch(organism1, organism2);
+  window["game_objects"].seed_pouches.push(seed_pouch);
+  return seed_pouch;
 }
 
 function combineGenomes(genome1, genome2){
