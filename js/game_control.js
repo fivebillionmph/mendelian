@@ -3,12 +3,7 @@
   function gameObjects(){
 
     // menu items
-    this.seed_pouches = [
-      new SeedPouch(
-        new Organism([0,0,1,0,0,1]),
-        new Organism([1,1,1,0,0,0])
-      )
-    ];
+    this.seed_pouches = [];
 
     this.plots = [];
 
@@ -73,7 +68,8 @@
   var game_objects = new gameObjects();
 
   window["game_objects"] = game_objects;
-  
+
+  createSeedPouch(new Organism([1,1,1,0,0,0]), new Organism(0,0,0,1,1,1));
 }());
 
 function createSeedPouch(organism1, organism2){
