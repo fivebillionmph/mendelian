@@ -81,7 +81,7 @@ function createSeedPouch(organism1, organism2){
 function combineGenomes(genome1, genome2){
   var crossing_over = .15;	// chance of crossing over
   if(genome1[0].length != genome1[1].length || genome1[0].length != genome2[0].length || genome1[0].length != genome2[1].length)
-    throw new Error("genome lengths do not match, something went terribly wrong");
+    throw new Error("genome lengths do not match");
   var chromosome1 = extractRandomChromosome(genome1, crossing_over);
   var chromosome2 = extractRandomChromosome(genome2, crossing_over);
   var new_genome = [chromosome1, chromosome2];
@@ -125,7 +125,7 @@ function subruleTrue(subrule, pheno_genes, genome){
   var gene_index = subrule.gene_index;	// array of gene indexes corresponding to an index in genome
   var ncopies = subrule.ncopies;	// array of ncopies
   var allele_index = subrule.allele_index;	// array of which allele there needs to be ncopies of
-  if(gene_index.length != ncopies.length || gene_index.length != allele_index.length) throw new Error("subrule arrays do not align");
+  if(gene_index.length != ncopies.length || gene_index.length != allele_index.length) throw new Error("subrule arrays do not align" + gene_index.length + " " + ncopies.length + " " + allele_index.length);
 
   var len = gene_index.length;
   for(var i = 0; i < len; i++){
