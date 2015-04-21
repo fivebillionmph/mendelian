@@ -5,25 +5,22 @@ function Organism(genome){
   this.expressions = Expressions(this.genome, window["game_objects"].phenotypes);
 }
 
-function Phenotype(genes, phenotypes, rules, name=null){
+function Phenotype(genes, phenotypes, rules){
   this.genes = genes;	// array of gene indexes corresponding to the index in Organism.genome
   this.phenotypes = phenotypes;	// array of possible phenotype expressions
   this.rules = rules;	// array of Rule, rules.length == phenotypes.length - 1
-  this.name = name;
 }
 
-function Subrule(gene_index, ncopies, allele_index, name=null){
+function Subrule(gene_index, ncopies, allele_index){
   if(gene_index.length != ncopies.length || gene_index.length != allele_index.length) throw new Error("sub rule lengths must match");
   if(ncopies > 3 || ncopies < 0) throw new Error("number of copies in subrule must be >= 0 and <= 3");
   this.gene_index = gene_index;	// sub-subrules are "and" delimited - all must be true for the subrule to be true
   this.ncopies = Math.floor(ncopies);	// 0,1,2,3 - (3 = 1 or 2)
   this.allele_index = allele_index;
-  this.name = name;
 }
 
-function Rule(subrule, name=null){
+function Rule(subrule){
   this.subrule = subrule;	// subrules are "or" delimited - just one subrule must be true for the rule to be true
-  this.name = name;
 }
 
 function Expressions(genome, global_phenotypes){
