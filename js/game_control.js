@@ -117,7 +117,7 @@ function getExpression(phenotype, genome){
       }
     }
   }
-  return phenotype.phenotypes[i+1];	// default last to last phenotype
+  return phenotype.phenotypes[i];	// default last to last phenotype
 }
 
 function subruleTrue(subrule, pheno_genes, genome){
