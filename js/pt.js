@@ -2,7 +2,14 @@
 
 function Organism(genome){
   this.genome = genome;	// genome is array of 2 arrays, one for mother and one for father
-  this.expressions = Expressions(this.genome, window["game_objects"].phenotypes);
+  this.expressions = [];
+
+  // build attributes from phenotype definitions and organisms genotype
+  var global_phenotypes = window["game_objects"].phenotypes;
+  for(var i = 0; i < global_phenotypes.length; i++){
+    var this_phenotype = global_phenotypes[i];
+    expressions.push(getExpression(this_phenotype, this.genome));
+  }
 }
 
 function Phenotype(genes, phenotypes, rules){
@@ -21,16 +28,6 @@ function Subrule(gene_index, ncopies, allele_index){
 
 function Rule(subrule){
   this.subrule = subrule;	// subrules are "or" delimited - just one subrule must be true for the rule to be true
-}
-
-function Expressions(genome, global_phenotypes){
-  // build attributes from phenotype definitions and organisms genotype
-  var expressions = [];
-  for(var i = 0; i < global_phenotypes.length; i++){
-    var this_phenotype = global_phenotypes[i];
-    expressions.push(getExpression(this_phenotype, genome));
-  }
-  return expressions;
 }
 
 
