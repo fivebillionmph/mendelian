@@ -8,7 +8,7 @@ function Organism(genome){
   var global_phenotypes = window["game_objects"].phenotypes;
   for(var i = 0; i < global_phenotypes.length; i++){
     var this_phenotype = global_phenotypes[i];
-    expressions.push(getExpression(this_phenotype, this.genome));
+    this.expressions.push(getExpression(this_phenotype, this.genome));
   }
 }
 
