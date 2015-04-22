@@ -113,7 +113,7 @@ function getExpression(phenotype, genome){
     for(var j = 0; j < rule.subrule.length; j++){
       var subrule = rule.subrule[j];
       if(subruleTrue(subrule, pheno_genes, genome)){
-        return phenotype.phenotypes[i];	// since or delimited, immediately return true
+        return phenotype.phenotypes[i];	// since "or" delimited, immediately return true
       }
     }
   }
@@ -135,7 +135,7 @@ function subruleTrue(subrule, pheno_genes, genome){
 
     if(gene_index_i >= pheno_genes.length) throw new Error("out of bounds gene_index in phenotype genes");
     var genome_i = [genome[0][pheno_genes[gene_index_i]], genome[1][pheno_genes[gene_index_i]]];	// extract the alleles for this phenotype
-    var ncopies_count = genome_i.filter(function(x){ return x == ncopies_i; }).length;
+    var ncopies_count = genome_i.filter(function(x){ return x == allele_index_i; }).length;
     if(allele_index_i == 3 && ncopies_count == 0) return false;	// since "and" delimited, immediately return false
     if(allele_index_i != 3 && allele_index_i != ncopies_count) return false;
   }
