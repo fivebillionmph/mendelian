@@ -69,7 +69,7 @@
 
   window["game_objects"] = game_objects;
 
-  createSeedPouch(new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]), new Organism([[0,0,0,1,1,1],[1,1,1,0,0,0]]));
+  createSeedPouch(new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]), new Organism([[0,0,0,1,1,1],[0,1,1,0,0,0]]));
 }());
 
 function createSeedPouch(organism1, organism2){
