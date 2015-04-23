@@ -72,12 +72,6 @@
   createSeedPouch(new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]), new Organism([[0,1,1,1,1,1],[0,1,1,1,1,1]]));
 }());
 
-function createSeedPouch(organism1, organism2){
-  var seed_pouch = new SeedPouch(organism1, organism2);
-  window["game_objects"].seed_pouches.push(seed_pouch);
-  return seed_pouch;
-}
-
 function combineGenomes(genome1, genome2){
   var crossing_over = .15;	// chance of crossing over
   if(genome1[0].length != genome1[1].length || genome1[0].length != genome2[0].length || genome1[0].length != genome2[1].length)
