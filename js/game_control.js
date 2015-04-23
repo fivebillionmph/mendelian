@@ -72,29 +72,6 @@
   createSeedPouch(new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]), new Organism([[0,1,1,1,1,1],[0,1,1,1,1,1]]));
 }());
 
-function combineGenomes(genome1, genome2){
-  var crossing_over = .15;	// chance of crossing over
-  if(genome1[0].length != genome1[1].length || genome1[0].length != genome2[0].length || genome1[0].length != genome2[1].length)
-    throw new Error("genome lengths do not match");
-  var chromosome1 = extractRandomChromosome(genome1, crossing_over);
-  var chromosome2 = extractRandomChromosome(genome2, crossing_over);
-  var new_genome = [chromosome1, chromosome2];
-  return new_genome;
-}
-
-function extractRandomChromosome(genome, crossing_over){
-  var main_idx = randomInt(0,2);
-  var c1 = genome[main_idx];	// the main chromsome randomly selected
-  var c2 = genome[main_idx == 0 ? 1 : 0];	// the other chromosome, that crossing over can act on
-  var new_length = c1.length;
-  var new_chromosome = [];
-  for(var i = 0; i < new_length; i++){
-    var dice_roll = Math.random();
-    new_chromosome.push(dice_roll < crossing_over ? c2[i] : c1[i]);
-  }
-  return new_chromosome;
-}
-
 function randomInt(min, max){	// min inclusive, max exclusive
   return Math.floor(Math.random() * (max - min)) + min;
 }
