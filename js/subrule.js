@@ -27,4 +27,4 @@ Subrule.prototype.subruleTrue = function(pheno_genes, genome){
     if(ncopies_i != 3 && ncopies_i != ncopies_count) return false;
   }
   return true;
-}
+};
