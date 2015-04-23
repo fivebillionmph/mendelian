@@ -19,13 +19,13 @@
 
     this.rules = {
       "simple": new Rule([this.subrules["one_copy_dominance"]]),
-      "codominance_both": new Rule(this.subrules["codominance_both"]),
-      "codominance_first": new Rule(this.subrules["codominance_first"]),
-      "codominance_second": new Rule(this.subrules["codominance_second"]),
-      "epistasis_first": new Rule(this.subrules["one_copy_dominance"]),	// if the first gene has the first allele, all other genes don't matter
-      "epistasis_second": new Rule(this.subrules["codominance_second"]),
-      "two_copy_dominance": new Rule(this.subrules["two_copy_dominance"]),
-      "incomplete_dominance": new Rule(this.subrules["incomplete_dominance"])
+      "codominance_both": new Rule([this.subrules["codominance_both"]]),
+      "codominance_first": new Rule([this.subrules["codominance_first"]]),
+      "codominance_second": new Rule([this.subrules["codominance_second"]]),
+      "epistasis_first": new Rule([this.subrules["one_copy_dominance"]]),	// if the first gene has the first allele, all other genes don't matter
+      "epistasis_second": new Rule([this.subrules["codominance_second"]]),
+      "two_copy_dominance": new Rule([this.subrules["two_copy_dominance"]]),
+      "incomplete_dominance": new Rule([this.subrules["incomplete_dominance"]])
     };
     // for testing, there are 4 phenotypes: height, spotted, flower color, seed pod color
     // height: tall/short - simple dominance A- = tall, aa = short
@@ -135,9 +135,9 @@ function subruleTrue(subrule, pheno_genes, genome){
 
     if(gene_index_i >= pheno_genes.length) throw new Error("out of bounds gene_index in phenotype genes");
     var genome_i = [genome[0][pheno_genes[gene_index_i]], genome[1][pheno_genes[gene_index_i]]];	// extract the alleles for this phenotype
-    var ncopies_count = genome_i.filter(function(x){ return x == allele_index_i; }).length;
-    if(allele_index_i == 3 && ncopies_count == 0) return false;	// since "and" delimited, immediately return false
-    if(allele_index_i != 3 && allele_index_i != ncopies_count) return false;
+    var ncopies_count = genome_i.filter(function(x){ return x == allele_index_i; }).length;	// count number of alleles for specific gene
+    if(ncopies_i == 3 && ncopies_count == 0) return false;	// since "and" delimited, immediately return false
+    if(ncopies_i != 3 && ncopies_i != ncopies_count) return false;
   }
   return true;
 }
