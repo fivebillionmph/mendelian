@@ -1,3 +1,7 @@
+function randomInt(min, max){	// min inclusive, max exclusive
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 (function(){
 
   function gameObjects(){
@@ -71,10 +75,6 @@
 
   createSeedPouch(new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]), new Organism([[0,1,1,1,1,1],[0,1,1,1,1,1]]));
 }());
-
-function randomInt(min, max){	// min inclusive, max exclusive
-  return Math.floor(Math.random() * (max - min)) + min;
-}
 
 function getExpression(phenotype, genome){
   var pheno_genes = phenotype.genes;
