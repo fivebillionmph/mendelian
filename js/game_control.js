@@ -76,21 +76,6 @@ function randomInt(min, max){	// min inclusive, max exclusive
   createSeedPouch(new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]), new Organism([[0,1,1,1,1,1],[0,1,1,1,1,1]]));
 }());
 
-function getExpression(phenotype, genome){
-  var pheno_genes = phenotype.genes;
-  var i = 0;
-  for(; i < phenotype.rules.length; i++){
-    var rule = phenotype.rules[i];
-    for(var j = 0; j < rule.subrule.length; j++){
-      var subrule = rule.subrule[j];
-      if(subruleTrue(subrule, pheno_genes, genome)){
-        return phenotype.phenotypes[i];	// since "or" delimited, immediately return true
-      }
-    }
-  }
-  return phenotype.phenotypes[i];	// default last to last phenotype
-}
-
 function subruleTrue(subrule, pheno_genes, genome){
   // pheno_genes specifies which subset of the genome is used in this phenotype
   var gene_index = subrule.gene_index;	// array of gene indexes corresponding to an index in genome
