@@ -1,5 +1,5 @@
 function Phenotype(genes, phenotypes, rules){
-  if(genes.constructor != Array || pehenotypes.constructor != Array || rules.constructor != Array) throw new Error("phenotype arguments much be of type array");
+  if(genes.constructor != Array || phenotypes.constructor != Array || rules.constructor != Array) throw new Error("phenotype arguments much be of type array");
   if(rules.length != phenotypes.length - 1) throw new Error("length of rules must be one less than length of phenotypes");
 
   this.genes = genes;	// array of gene indexes corresponding to the index in Organism.genome
