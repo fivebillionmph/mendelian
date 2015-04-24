@@ -15,12 +15,7 @@ Phenotype.prototype.getExpression = function(genome){
   var i = 0;
   for(; i < rules.length; i++){
     var rule = rules[i];
-    for(var j = 0; j < rule.subrule.length; j++){
-      var subrule = rule.subrule[j];
-      if(subrule.subruleTrue(pheno_genes, genome)){
-        return phenotypes[i];	// since "or" delimited, immediately return true
-      }
-    }
+    if(rule.ruleTrue(pheno_gennes, genome)) return phenotypes[i];
   }
   return phenotypes[i];	// default last to last phenotype
 };
