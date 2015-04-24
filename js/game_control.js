@@ -73,5 +73,5 @@ function randomInt(min, max){	// min inclusive, max exclusive
 
   window["game_objects"] = game_objects;
 
-  createSeedPouch(new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]), new Organism([[0,1,1,1,1,1],[0,1,1,1,1,1]]));
+  SeedPouchBuilder.prototype.createSeedPouch(new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]), new Organism([[0,1,1,1,1,1],[0,1,1,1,1,1]]));
 }());
