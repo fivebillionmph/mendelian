@@ -2,6 +2,7 @@ function randomInt(min, max){	// min inclusive, max exclusive
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+/*
 (function(){
 
   function gameObjects(){
@@ -75,3 +76,4 @@ function randomInt(min, max){	// min inclusive, max exclusive
 
   SeedPouchBuilder.prototype.createSeedPouch(new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]), new Organism([[0,1,1,1,1,1],[0,1,1,1,1,1]]));
 }());
+*/
