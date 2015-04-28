@@ -23,63 +23,122 @@
   <script src="js/qunit-1.18.0.js"></script>
   <script>
     // set up subrules, rules and phenotypes that will be used by the rest of the script
-    var subrules = {
-      "one_copy_dominance": new Subrule([0], [3], [0]),
-      "codominance_both": new Subrule([0,1], [3,3], [0,0]),	// first allele of first and second gene both have at least one copy
-      "codominance_first": new Subrule([0,1], [3,0], [0,0]),	// first allele of first gene has one or two copies, first allele of second gene has zero copies
-      "codominance_second": new Subrule([0,1], [0,3], [0,0]),	// first allele of first gene has zero copies, first allele of second gene has one or two copies
-      "two_copy_dominance": new Subrule([0], [2], [0]),
-      "incomplete_dominance": new Subrule([0,0], [1,1], [0,1])	// both first and second allele of first gene each have one copy
-    };
+    function GameObjects(){
+      this.seed_pouches = [];
 
-    var rules = {
-      "simple": new Rule([this.subrules["one_copy_dominance"]]),
-      "codominance_both": new Rule([this.subrules["codominance_both"]]),
-      "codominance_first": new Rule([this.subrules["codominance_first"]]),
-      "codominance_second": new Rule([this.subrules["codominance_second"]]),
-      "epistasis_first": new Rule([this.subrules["one_copy_dominance"]]),	// if the first gene has the first allele, all other genes don't matter
-      "epistasis_second": new Rule([this.subrules["codominance_second"]]),
-      "two_copy_dominance": new Rule([this.subrules["two_copy_dominance"]]),
-      "incomplete_dominance": new Rule([this.subrules["incomplete_dominance"]])
-    };
+      this.plots = [];
 
-    var phenotypes = [
-      // height: tall/short - simple dominance A- = tall, aa = short
-      new Phenotype(
-        [0],	// only uses first gene
-        ["tall", "short"],
-        [this.rules["simple"]]
-      ),
+      this.subrules = {
+        "one_copy_dominance": new Subrule([0], [3], [0]),
+        "codominance_both": new Subrule([0,1], [3,3], [0,0]),	// first allele of first and second gene both have at least one copy
+        "codominance_first": new Subrule([0,1], [3,0], [0,0]),	// first allele of first gene has one or two copies, first allele of second gene has zero copies
+        "codominance_second": new Subrule([0,1], [0,3], [0,0]),	// first allele of first gene has zero copies, first allele of second gene has one or two copies
+        "two_copy_dominance": new Subrule([0], [2], [0]),
+        "incomplete_dominance": new Subrule([0,0], [1,1], [0,1])	// both first and second allele of first gene each have one copy
+      };
 
-      // spotted: co dominance - B-cc = striped, bbC- = spotted, B-C- = striped and spotted, bbcc = plain
-      new Phenotype(
-        [1,2],	// uses second and third genes
-        ["striped and spotted", "striped", "spotted", "plain"],
-        [this.rules["codominance_both"], this.rules["codominance_first"], this.rules["codominance_second"]]
-      ),
+      this.rules = {
+        "simple": new Rule([this.subrules["one_copy_dominance"]]),
+        "codominance_both": new Rule([this.subrules["codominance_both"]]),
+        "codominance_first": new Rule([this.subrules["codominance_first"]]),
+        "codominance_second": new Rule([this.subrules["codominance_second"]]),
+        "epistasis_first": new Rule([this.subrules["one_copy_dominance"]]),	// if the first gene has the first allele, all other genes don't matter
+        "epistasis_second": new Rule([this.subrules["codominance_second"]]),
+        "two_copy_dominance": new Rule([this.subrules["two_copy_dominance"]]),
+        "incomplete_dominance": new Rule([this.subrules["incomplete_dominance"]])
+      };
 
-      // flower color: epistasis - D---- = red, ddE- = blue; ddee = white
-      new Phenotype(
-        [3,4],
-        ["red", "blue", "white"],
-        [this.rules["epistasis_first"], this.rules["epistasis_second"]]
-      ),
+      this.phenotypes = [
+        // height: tall/short - simple dominance A- = tall, aa = short
+        new Phenotype(
+          [0],	// only uses first gene
+          ["tall", "short"],
+          [this.rules["simple"]]
+        ),
 
-      // seed pod color: incomplete dominance - FF = red, Ff = pink, ff = white
-      new Phenotype(
-        [5],
-        ["red", "pink", "white"],
-        [this.rules["two_copy_dominance"], this.rules["incomplete_dominance"]]
-      )
-    ];
+        // spotted: co dominance - B-cc = striped, bbC- = spotted, B-C- = striped and spotted, bbcc = plain
+        new Phenotype(
+          [1,2],	// uses second and third genes
+          ["striped and spotted", "striped", "spotted", "plain"],
+          [this.rules["codominance_both"], this.rules["codominance_first"], this.rules["codominance_second"]]
+        ),
 
+        // flower color: epistasis - D---- = red, ddE- = blue; ddee = white
+        new Phenotype(
+          [3,4],
+          ["red", "blue", "white"],
+          [this.rules["epistasis_first"], this.rules["epistasis_second"]]
+        ),
+
+        // seed pod color: incomplete dominance - FF = red, Ff = pink, ff = white
+        new Phenotype(
+          [5],
+          ["red", "pink", "white"],
+          [this.rules["two_copy_dominance"], this.rules["incomplete_dominance"]]
+        )
+      ];
+    }
+    window["game_objects"] = new GameObjects();
+
+    var org1 = new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]);
+    var org2 = new Organism([[0,1,1,1,1,1],[0,1,1,1,1,1]]);
 
 
 
     QUnit.test("subrule", function(assert){
-      assert.expect(1);
+      //assert.expect(1);
+      var genome1 = [[0,0,0,0,0,0],[0,0,0,0,0,0]];
+      var genome2 = [[1,1,1,1,1,1],[1,1,1,1,1,1]];
+      var genome3 = [[0,1,0,0,0,1],[1,1,0,0,0,0]];
+      var genome4 = [[0,0,1,0,0,0],[0,0,1,0,0,1]];
+      var genome5 = [[0,1,1,0,0,0],[0,0,0,0,0,0]];
+      var genome6 = [[0,0,0,0,0,0],[0,1,1,0,0,0]];
+      var phenogenes1 = [0];
+      var phenogenes2 = [1,2];
+      var phenogenes3 = [3,4];
+      var phenogenes4 = [5];
+      var subrules = window.game_objects.subrules;
 
-      
+      var one_copy_dominance = subrules.one_copy_dominance;
+      assert.ok(one_copy_dominance.subruleTrue(phenogenes1, genome1), "one_copy_dominance genome1");
+      assert.notOk(one_copy_dominance.subruleTrue(phenogenes1, genome2), "one_copy_dominance genome2");
+      assert.ok(one_copy_dominance.subruleTrue(phenogenes1, genome3), "one_copy_dominance genome3");
+
+      var codominance_both = subrules.codominance_both;
+      assert.ok(codominance_both.subruleTrue(phenogenes2, genome1), "codominance_both genome1");
+      assert.notOk(codominance_both.subruleTrue(phenogenes2, genome2), "codominance_both genome2");
+      assert.notOk(codominance_both.subruleTrue(phenogenes2, genome3), "codominance_both genome3");
+      assert.notOk(codominance_both.subruleTrue(phenogenes2, genome4), "codominance_both genome4");
+      assert.ok(codominance_both.subruleTrue(phenogenes2, genome5), "codominance_both genome5");
+      assert.ok(codominance_both.subruleTrue(phenogenes2, genome6), "codominance_both genome6");
+
+      var codominance_first = subrules.codominance_first;
+      assert.notOk(codominance_first.subruleTrue(phenogenes2, genome1), "codominance_first genome1");
+      assert.notOk(codominance_first.subruleTrue(phenogenes2, genome2), "codominance_first genome2");
+      assert.notOk(codominance_first.subruleTrue(phenogenes2, genome3), "codominance_first genome3");
+      assert.ok(codominance_first.subruleTrue(phenogenes2, genome4), "codominance_first genome4");
+      assert.notOk(codominance_first.subruleTrue(phenogenes2, genome5), "codominance_first genome5");
+      assert.notOk(codominance_first.subruleTrue(phenogenes2, genome6), "codominance_first genome6");
+
+      var codominance_second = subrules.codominance_second;
+      assert.notOk(codominance_second.subruleTrue(phenogenes2, genome1), "codominance_second genome1");
+      assert.notOk(codominance_second.subruleTrue(phenogenes2, genome2), "codominance_second genome2");
+      assert.ok(codominance_second.subruleTrue(phenogenes2, genome3), "codominance_second genome3");
+      assert.notOk(codominance_second.subruleTrue(phenogenes2, genome4), "codominance_second genome4");
+      assert.notOk(codominance_second.subruleTrue(phenogenes2, genome5), "codominance_second genome5");
+      assert.notOk(codominance_second.subruleTrue(phenogenes2, genome6), "codominance_second genome6");
+
+      var two_copy_dominance = subrules.two_copy_dominance;
+      assert.ok(two_copy_dominance.subruleTrue(phenogenes4, genome1), "two_copy_dominance genome1");
+      assert.notOk(two_copy_dominance.subruleTrue(phenogenes4, genome2), "two_copy_dominance genome2");
+      assert.notOk(two_copy_dominance.subruleTrue(phenogenes4, genome3), "two_copy_dominance genome3");
+      assert.notOk(two_copy_dominance.subruleTrue(phenogenes4, genome4), "two_copy_dominance genome4");
+
+      var incomplete_dominance = subrules.incomplete_dominance;
+      assert.notOk(incomplete_dominance.subruleTrue(phenogenes4, genome1), "incomplete_dominance genome1");
+      assert.notOk(incomplete_dominance.subruleTrue(phenogenes4, genome2), "incomplete_dominance genome2");
+      assert.ok(incomplete_dominance.subruleTrue(phenogenes4, genome3), "incomplete_dominance genome3");
+      assert.ok(incomplete_dominance.subruleTrue(phenogenes4, genome4), "incomplete_dominance genome4");
     });
   </script>
 
