@@ -85,10 +85,10 @@
 
     var genome1 = [[0,0,0,0,0,0],[0,0,0,0,0,0]];
     var genome2 = [[1,1,1,1,1,1],[1,1,1,1,1,1]];
-    var genome3 = [[0,1,0,0,0,1],[1,1,0,0,0,0]];
-    var genome4 = [[0,0,1,0,0,0],[0,0,1,0,0,1]];
-    var genome5 = [[0,1,1,0,0,0],[0,0,0,0,0,0]];
-    var genome6 = [[0,0,0,0,0,0],[0,1,1,0,0,0]];
+    var genome3 = [[0,1,0,0,0,1],[1,1,0,1,1,0]];
+    var genome4 = [[0,0,1,0,0,0],[0,0,1,1,0,1]];
+    var genome5 = [[0,1,1,1,0,0],[0,0,0,1,0,0]];
+    var genome6 = [[0,0,0,1,0,0],[0,1,1,1,1,0]];
     var phenogenes1 = [0];
     var phenogenes2 = [1,2];
     var phenogenes3 = [3,4];
@@ -97,11 +97,7 @@
   </script>
 
   <script src="tests/test_subrule.js"></script>
-  <script>
-    QUnit.test("rule", function(assert){
-
-    });
-  </script>
+  <script src="tests/test_rule.js"></script>
 
 </body>
 </html>
