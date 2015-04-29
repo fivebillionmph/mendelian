@@ -30,14 +30,17 @@ SeedPouch.prototype.combineGenomes = function(genome1, genome2){
 };
 
 
-SeedPouch.prototype.extractRandomChromosome = function(genome, crossing_over){
-  var main_idx = randomInt(0,2);
+SeedPouch.prototype.extractRandomChromosome = function(genome, crossing_over, f_randomInt, f_random1){
+  if(f_randomInt === undefined) f_randomInt = randomInt;
+  if(f_random1 === undefined) f_random1 = random1;
+
+  var main_idx = f_randomInt(0,2);
   var c1 = genome[main_idx];	// the main chromsome randomly selected
   var c2 = genome[main_idx == 0 ? 1 : 0];	// the other chromosome, that crossing over can act on
   var new_length = c1.length;
   var new_chromosome = [];
   for(var i = 0; i < new_length; i++){
-    var dice_roll = Math.random();
+    var dice_roll = f_random1();
     new_chromosome.push(dice_roll < crossing_over ? c2[i] : c1[i]);
   }
   return new_chromosome;
