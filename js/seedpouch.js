@@ -1,4 +1,4 @@
-function SeedPouch(organism1, organism2, randomInt, random1){
+function SeedPouch(organism1, organism2, randomInt, random1, note){
   this.parent1 = organism1;
   this.parent2 = organism2;
   this.randomInt = randomInt;

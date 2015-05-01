@@ -1,44 +1,16 @@
-Plant
-	PlantAttributes
-	Genome
+singletons:
+  Rule
+  Subrule
+  Phenotype
 
-PlantAttributes
-	height: int
-	age: int
-	color: string
-	health: int
-	flower_color: string
-	thorned: bool
+physical objects:
+  Plot
+  Slot
+  Organism
+  SeedPouch
 
-Gene
-	# the Gene class will contain the data on how alleles interact (dominace, recessive, epistasis to other genes)
-	Array: Allele
-
-Allele
-	Phenotype
-
-Phenotype
-
-Genome
-
-Experiment
-	# layout will include several tiles (unlimited?).
-	# an experiment will be a single tile that can popout and players can plant many crops
-	# seeds from a single cross or seeds from different crosses can be planted
-	# notes can be tracked for the cross
-	# an experiment can only plant so many seeds (maybe can be upgraded for a price?)
-	CropField
-	Note
-
-CropField
-	# contains several plots that grow seeds into plants
-	Array: Plot
-	int	# dimension	x
-	int	# dimension	y
-
-Note
-	string
-
-Plot
-	# contains a single seed/plant, but can be empty
-	Plant
+builders:
+these should be aware of the graphics library (jqueryui)
+  SeedPouchBuilder
+  PlotBuilder
+  SlotBuilder

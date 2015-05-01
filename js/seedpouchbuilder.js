@@ -3,8 +3,9 @@ function SeedPouchBuilder(){
 
 }
 
-SeedPouchBuilder.prototype.createSeedPouch  = function(organism1, organism2){
-  var seed_pouch = new SeedPouch(organism1, organism2);
+SeedPouchBuilder.prototype.createSeedPouch  = function(organism1, organism2, note){
+  if(note === undefined) note = "";
+  var seed_pouch = new SeedPouch(organism1, organism2, randomInt, random1, note);
   window["game_objects"].seed_pouches.push(seed_pouch);
   return seed_pouch;
 };
