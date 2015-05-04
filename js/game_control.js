@@ -6,6 +6,11 @@ function random1(){
   return Math.random();
 }
 
+(function(){
+  window.game_objects = window.game_objects || {};
+  window.game_objects.menu = new Menu();
+}());
+
 /*
 (function(){
 

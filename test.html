@@ -23,12 +23,8 @@
   <script src="js/qunit-1.18.0.js"></script>
   <script>
     // set up subrules, rules and phenotypes that will be used by the rest of the script
-    function GameObjects(){
-      this.seed_pouches = [];
-
-      this.plots = [];
-
-      this.subrules = {
+    (function(){
+      var subrules = {
         "one_copy_dominance": new Subrule([0], [3], [0]),
         "codominance_both": new Subrule([0,1], [3,3], [0,0]),	// first allele of first and second gene both have at least one copy
         "codominance_first": new Subrule([0,1], [3,0], [0,0]),	// first allele of first gene has one or two copies, first allele of second gene has zero copies
@@ -37,48 +33,51 @@
         "incomplete_dominance": new Subrule([0,0], [1,1], [0,1])	// both first and second allele of first gene each have one copy
       };
 
-      this.rules = {
-        "simple": new Rule([this.subrules["one_copy_dominance"]]),
-        "codominance_both": new Rule([this.subrules["codominance_both"]]),
-        "codominance_first": new Rule([this.subrules["codominance_first"]]),
-        "codominance_second": new Rule([this.subrules["codominance_second"]]),
-        "epistasis_first": new Rule([this.subrules["one_copy_dominance"]]),	// if the first gene has the first allele, all other genes don't matter
-        "epistasis_second": new Rule([this.subrules["codominance_second"]]),
-        "two_copy_dominance": new Rule([this.subrules["two_copy_dominance"]]),
-        "incomplete_dominance": new Rule([this.subrules["incomplete_dominance"]])
+      var rules = {
+        "simple": new Rule([subrules["one_copy_dominance"]]),
+        "codominance_both": new Rule([subrules["codominance_both"]]),
+        "codominance_first": new Rule([subrules["codominance_first"]]),
+        "codominance_second": new Rule([subrules["codominance_second"]]),
+        "epistasis_first": new Rule([subrules["one_copy_dominance"]]),	// if the first gene has the first allele, all other genes don't matter
+        "epistasis_second": new Rule([subrules["codominance_second"]]),
+        "two_copy_dominance": new Rule([subrules["two_copy_dominance"]]),
+        "incomplete_dominance": new Rule([subrules["incomplete_dominance"]])
       };
 
-      this.phenotypes = [
+       var phenotypes = [
         // height: tall/short - simple dominance A- = tall, aa = short
         new Phenotype(
           [0],	// only uses first gene
           ["tall", "short"],
-          [this.rules["simple"]]
+          [rules["simple"]]
         ),
 
         // spotted: co dominance - B-cc = striped, bbC- = spotted, B-C- = striped and spotted, bbcc = plain
         new Phenotype(
           [1,2],	// uses second and third genes
           ["striped and spotted", "striped", "spotted", "plain"],
-          [this.rules["codominance_both"], this.rules["codominance_first"], this.rules["codominance_second"]]
+          [rules["codominance_both"], rules["codominance_first"], rules["codominance_second"]]
         ),
 
         // flower color: epistasis - D---- = red, ddE- = blue; ddee = white
         new Phenotype(
           [3,4],
           ["red", "blue", "white"],
-          [this.rules["epistasis_first"], this.rules["epistasis_second"]]
+          [rules["epistasis_first"], rules["epistasis_second"]]
         ),
 
         // seed pod color: incomplete dominance - FF = red, Ff = pink, ff = white
         new Phenotype(
           [5],
           ["red", "pink", "white"],
-          [this.rules["two_copy_dominance"], this.rules["incomplete_dominance"]]
+          [rules["two_copy_dominance"], rules["incomplete_dominance"]]
         )
       ];
-    }
-    window["game_objects"] = new GameObjects();
+
+      window.game_objects.subrules = subrules;
+      window.game_objects.rules = rules;
+      window.game_objects.phenotypes = phenotypes;
+    }());
 
     var org1 = new Organism([[1,1,1,0,0,0],[1,0,0,1,1,0]]);
     var org2 = new Organism([[0,1,1,1,1,1],[0,1,1,1,1,1]]);
