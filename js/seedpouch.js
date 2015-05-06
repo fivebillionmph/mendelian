@@ -3,7 +3,8 @@ function SeedPouch(organism1, organism2, randomInt, random1, note){
   this.parent2 = organism2;
   this.randomInt = randomInt;
   this.random1 = random1;
-  this.note = "";
+  if(note === undefined) this.note = "";
+  else this.note = note;
 }
 
 SeedPouch.prototype.crossParents = function(){
