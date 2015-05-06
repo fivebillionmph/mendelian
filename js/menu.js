@@ -6,26 +6,29 @@ function Menu(){
 }
 
 Menu.prototype.addSeedPouch = function(seed_pouch){
-  this.seed_pouches.push(seed_pouch);
+  this.add("seed_pouches", seed_pouch);
 }
 
 Menu.prototype.removeSeedPouch = function(seed_pouch){
-  for(var i = 0; i < this.seed_pouches.length; i++){
-    if(this.seed_pouches[i] === seed_pouch){
-      this.seed_pouches.splice(i, 1);
-      break;
-    }
-  }
+  this.remove("seed_pouches", seed_pouch);
 }
 
 Menu.prototype.addPlot = function(plot){
-  this.plots.push(plot);
+  this.add("plots", plot);
 }
 
 Menu.prototype.removePlot = function(plot){
-  for(var i = 0; i < this.plots.length; i++){
-    if(this.plot[i] === plot){
-      this.plot.splice(i, 1);
+  this.remove("plots", plot);
+}
+
+Menu.prototype.add = function(prop, obj){
+  this[prop].push(obj);
+}
+
+Menu.prototype.remove = function(prop, obj){
+  for(var i = 0; i < this[prop].length; i++){
+    if(this[prop][i] === obj){
+      this[prop].splice(i, 1);
       break;
     }
   }
