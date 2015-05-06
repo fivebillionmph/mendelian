@@ -22,6 +22,9 @@ Menu.prototype.removePlot = function(plot){
 }
 
 Menu.prototype.add = function(prop, obj){
+  for(var i = 0; i < this[prop].length; i++){	// make sure the object is not already in the array
+    if(this[prop][i] === obj) return;
+  }
   this[prop].push(obj);
 }
 
