@@ -1,5 +1,6 @@
-function Slot(organism){
+function Slot(organism, note){
 // holds a single plant
   this.organism = organism;
-  this.note = "";
+  if(note === undefined) this.note = "";
+  else this.note = note;
 }
