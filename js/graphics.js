@@ -33,8 +33,12 @@ function zebraBackPanel(sizex, sizey, bgcolor){
 
 function zebraPanels(sizex, sizey, border_size, pancol){
   var left_panel = new zebra.ui.Panel();
-  left_panel.setBounds(border_size, border_size, (sizex/4) - (border_size * 2), sizey - (border_size * 2));
+  left_panel.setBounds(0, 0);
+  left_panel.setPreferredSize((sizex/4) - (border_size * 2), sizey - (border_size * 2));
   left_panel.setBackground(pancol);
+
+  var scroll_left_panel = new zebra.ui.ScrollPan(left_panel, zebra.layout.VERTICAL);
+  scroll_left_panel.setBounds(border_size, border_size, (sizex/4) - (border_size * 2), sizey - (border_size * 2));
 
   var right_panel = new zebra.ui.Panel();
   right_panel.setBounds(sizex - (sizex/4) + border_size, border_size, (sizex/4) - border_size * 2, sizey - (border_size * 2));
@@ -50,11 +54,12 @@ function zebraPanels(sizex, sizey, border_size, pancol){
 
   var go_zebra = window.game_objects.zebra;
   var back_panel = go_zebra.back_panel;
-  back_panel.add(left_panel);
+  back_panel.add(scroll_left_panel);
   back_panel.add(right_panel);
   back_panel.add(scroll_center_panel);
   go_zebra.left_panel = left_panel;
   go_zebra.right_panel = right_panel;
   go_zebra.center_panel = center_panel;
   go_zebra.scroll_center_panel = scroll_center_panel;
+  go_zebra.scroll_left_panel = scroll_left_panel;
 }
