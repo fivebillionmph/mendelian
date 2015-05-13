@@ -52,6 +52,7 @@ function zebraPanels(sizex, sizey, border_size, pancol){
   var scroll_center_panel = new zebra.ui.ScrollPan(center_panel, zebra.layout.VERTICAL);
   scroll_center_panel.setBounds((sizex/4) + border_size, border_size, (sizex/2) - (border_size * 2), sizey - (border_size * 2));
 
+
   var go_zebra = window.game_objects.zebra;
   var back_panel = go_zebra.back_panel;
   back_panel.add(scroll_left_panel);
