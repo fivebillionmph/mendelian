@@ -1,3 +1,7 @@
-function SeedPouchesPanel(winsizex, winsizey, border_size, pancol){
+function SeedPouchesPanel(properties){
+  var bounds = this.getBounds(properties);
+}
+
+SeedPouchesPanel.prototype.getBounds = function(properties){
 
 }

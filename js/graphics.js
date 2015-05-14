@@ -4,7 +4,11 @@ zebra.ready(function(){
     sizey: 400,
     border_size: 5,
     bgcolor: "#1E90FF",	// dodger blue :)
-    pancol: "green"
+    pancol: "green",
+    seed_pouch_sizex: 50,
+    seed_pouch_sizey: 50,
+    plot_sizex: 50,
+    plot_sizey: 50,
   };
 
   window.game_objects = window.game_objects || {};
@@ -12,30 +16,25 @@ zebra.ready(function(){
 });
 
 function Graphics(properties){
-  // properties
-  this.sizex = properties.sizex;
-  this.sizey = properties.sizey;
-  this.border_size = properties.border_size;
-  this.bgcolor = properties.bgcolor;
-  this.pancol = properties.pancol;
+  this.properties = properties;
 
   // base panels
-  this.root = this.zebraRoot(this.sizex, this.sizey);
-  this.back_panel = this.zebraBackPanel(this.sizex, this.sizey, this.bgcolor);
-  this.seed_pouches_panel = new SeedPouchesPanel(this.sizex, this.sizey, this.border_size, this.pancol); // left panel
-  this.plots_panel = new PlotsPanel(this.sizex, this.sizey, this.border_size, this.pancol);	// center panel
-  this.builder_panel = new SeedPouchBuilderPanel(this.sizex, this.sizey, this.border_size, this.pancol);	// right panel
+  this.root = this.zebraRoot(this.properties);
+  this.back_panel = this.zebraBackPanel(this.properties);
+  this.seed_pouches_panel = new SeedPouchesPanel(this.properties); // left panel
+  this.plots_panel = new PlotsPanel(this.properties);	// center panel
+  this.builder_panel = new SeedPouchBuilderPanel(this.properties);	// right panel
 }
 
-Graphics.prototype.zebraRoot = function(sizex, sizey){
-  var root = (new zebra.ui.zCanvas(sizex, sizey)).root;
+Graphics.prototype.zebraRoot = function(properties){
+  var root = (new zebra.ui.zCanvas(this.sizex, this.sizey)).root;
   return root;
 }
 
-Graphics.prototype.zebraBackPanel = function(sizex, sizey, bgcolor){
+Graphics.prototype.zebraBackPanel = function(properties){
   var back_panel = new zebra.ui.Panel();
-  back_panel.setBounds(0,0,sizex,sizey);
-  back_panel.setBackground(bgcolor);
+  back_panel.setBounds(0,0,properties.sizex,properties.sizey);
+  back_panel.setBackground(properties.bgcolor);
   return back_panel;
 }
 
