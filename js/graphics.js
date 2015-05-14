@@ -1,37 +1,45 @@
 zebra.ready(function(){
+  var properties = {
+    sizex: 800,
+    sizey: 400,
+    border_size: 5,
+    bgcolor: "#1E90FF",	// dodger blue :)
+    pancol: "green"
+  };
+
   window.game_objects = window.game_objects || {};
-  window.game_objects.zebra = {};
-
-  var sizex = 800;
-  var sizey = 400;
-  var border_size = 5;
-  var bgcolor = "#1E90FF";	// dodger blue :)
-  var pancol = "green";
-
-  // initialize canvas and background panel
-  var root = zebraRoot(sizex, sizey);
-  var back_panel = zebraBackPanel(sizex, sizey, bgcolor);
-
-  // initialize panels
-  zebraPanels(sizex, sizey, border_size, pancol);
+  window.game_objects.zebra = new Graphics(properties);
 });
 
-function zebraRoot(sizex, sizey){
+function Graphics(properties){
+  // properties
+  this.sizex = properties.sizex;
+  this.sizey = properties.sizey;
+  this.border_size = properties.border_size;
+  this.bgcolor = properties.bgcolor;
+  this.pancol = properties.pancol;
+
+  // base panels
+  this.root = this.zebraRoot(this.sizex, this.sizey);
+  this.back_panel = this.zebraBackPanel(this.sizex, this.sizey, this.bgcolor);
+  this.seed_pouches_panel = new SeedPouchesPanel(this.sizex, this.sizey, this.border_size, this.pancol); // left panel
+  this.plots_panel = new PlotsPanel(this.sizex, this.sizey, this.border_size, this.pancol);	// center panel
+  this.builder_panel = new SeedPouchBuilderPanel(this.sizex, this.sizey, this.border_size, this.pancol);	// right panel
+}
+
+Graphics.prototype.zebraRoot = function(sizex, sizey){
   var root = (new zebra.ui.zCanvas(sizex, sizey)).root;
-  window.game_objects.zebra.root = root;
   return root;
 }
 
-function zebraBackPanel(sizex, sizey, bgcolor){
+Graphics.prototype.zebraBackPanel = function(sizex, sizey, bgcolor){
   var back_panel = new zebra.ui.Panel();
   back_panel.setBounds(0,0,sizex,sizey);
   back_panel.setBackground(bgcolor);
-  window.game_objects.zebra.root.add(back_panel);
-  window.game_objects.zebra.back_panel = back_panel;
   return back_panel;
 }
 
-function zebraPanels(sizex, sizey, border_size, pancol){
+Graphics.prototype.zebraPanels = function(sizex, sizey, border_size, pancol){
   var left_panel = new zebra.ui.Panel();
   left_panel.setBounds(0, 0);
   left_panel.setPreferredSize((sizex/4) - (border_size * 2), sizey - (border_size * 2));
@@ -53,14 +61,16 @@ function zebraPanels(sizex, sizey, border_size, pancol){
   scroll_center_panel.setBounds((sizex/4) + border_size, border_size, (sizex/2) - (border_size * 2), sizey - (border_size * 2));
 
 
-  var go_zebra = window.game_objects.zebra;
+  var panels = {};
   var back_panel = go_zebra.back_panel;
   back_panel.add(scroll_left_panel);
   back_panel.add(right_panel);
   back_panel.add(scroll_center_panel);
-  go_zebra.left_panel = left_panel;
-  go_zebra.right_panel = right_panel;
-  go_zebra.center_panel = center_panel;
-  go_zebra.scroll_center_panel = scroll_center_panel;
-  go_zebra.scroll_left_panel = scroll_left_panel;
+  panels.left_panel = left_panel;
+  panels.right_panel = right_panel;
+  panels.center_panel = center_panel;
+  panels.scroll_center_panel = scroll_center_panel;
+  panels.scroll_left_panel = scroll_left_panel;
+
+  return panels;
 }
