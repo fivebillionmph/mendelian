@@ -21,9 +21,9 @@ function Graphics(properties){
   // base panels
   this.root = this.zebraRoot(this.properties);
   this.back_panel = this.zebraBackPanel(this.properties);
-  this.seed_pouches_panel = new SeedPouchesPanel(this.properties); // left panel
-  this.plots_panel = new PlotsPanel(this.properties);	// center panel
-  this.builder_panel = new SeedPouchBuilderPanel(this.properties);	// right panel
+  this.seed_pouches_panel = new SeedPouchesPanel(this.properties, this.back_panel); // left panel
+  this.plots_panel = new PlotsPanel(this.properties, this.back_panel);	// center panel
+  this.builder_panel = new SeedPouchBuilderPanel(this.properties, this.back_panel);	// right panel
 }
 
 Graphics.prototype.zebraRoot = function(properties){
