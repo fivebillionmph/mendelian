@@ -1,21 +1,20 @@
-function SeedPouchesPanel(properties, back_panel){
-  var seed_pouches = window.game_control.seed_pouches;
+function SeedPouchesPanel(properties, seed_pouch_graphics, back_panel){
   var bounds = this.getBounds(properties, seed_pouches);
 
   this.panel = this.buildPanel(properties, bounds);
   this.scroll_panel = this.buildScrollPanel(properties, bounds, panel);
   back_panel.add(this.scroll_panel);
 
-  this.addSeedPouches(seed_pouches, properties, bounds, panel);
+  this.addSeedPouches(seed_pouch_graphics, properties, bounds, panel);
 }
 
-SeedPouchesPanel.prototype.getBounds = function(properties, seed_pouches){
+SeedPouchesPanel.prototype.getBounds = function(properties, seed_pouch_graphics){
   var scroll_sizex = (properties.sizex / 4) - (properties.border_size * 2);
   var scroll_sizey = properties.sizey - (border_size * 2);
 
   var sizex = scroll_sizex;
   var sp_per_row = Math.floor(properties.sizex / ((properties.border_size * 2) + properties.seed_pouch_sizex));	// number of seed pouches per row
-  var n_seed_pouches = seed_pouches.length;
+  var n_seed_pouches = seed_pouch_graphics.length;
   var n_sp_row = Math.ceiling(n_seed_pouches / sp_per_row);	// number of seed pouch rows
   var needed_sp_row_size = properties.seed_pouch.sizey + (properties.border_size * 2);	// space needed for one seed pouch row, y direction
   var needed_yspace = n_sp_row * needed_sp_row_size;	// total height needed
@@ -47,8 +46,8 @@ SeedPouchesPanel.prototype.buildScrollPanel = function(properties, bounds, panel
   return scroll_panel;
 }
 
-SeedPouchesPanel.prototype.addSeedPouches = function(seed_pouches, properties, bounds, panel){
-  for(var i = 0; i < seed_pouches.length; i++){
+SeedPouchesPanel.prototype.addSeedPouches = function(seed_pouch_graphics, properties, bounds, panel){
+  for(var i = 0; i < seed_pouch_graphics.length; i++){
     
   }
 }
