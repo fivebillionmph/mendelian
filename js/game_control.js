@@ -8,7 +8,9 @@ function random1(){
 
 (function(){
   window.game_objects = window.game_objects || {};
-  window.game_objects.menu = new Menu();
+  window.game_objects.seed_pouches = [];
+  window.game_objects.plots = [];
+  //window.game_objects.menu = new Menu();
 }());
 
 /*
