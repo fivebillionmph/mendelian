@@ -21,8 +21,7 @@ function Graphics(properties){
   // base panels
   this.root = this.zebraRoot(this.properties);
   this.back_panel = this.zebraBackPanel(this.properties);
-  this.seed_pouch_graphics = new SeedPouchGraphics(window.game_objects.seed_pouches);
-  this.seed_pouches_panel = new SeedPouchesPanel(this.properties, this.seed_pouch_graphics, this.back_panel); // left panel
+  this.seed_pouches_panel = new SeedPouchesPanel(this.properties, this.back_panel); // left panel
   this.plots_panel = new PlotsPanel(this.properties, this.back_panel);	// center panel
   this.builder_panel = new SeedPouchBuilderPanel(this.properties, this.back_panel);	// right panel
 }
