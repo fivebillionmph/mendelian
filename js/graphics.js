@@ -4,11 +4,12 @@ zebra.ready(function(){
     sizey: 400,
     border_size: 5,
     bgcolor: "#1E90FF",	// dodger blue :)
-    pancol: "green",
+    pancol: "brown",
     seed_pouch_sizex: 50,
     seed_pouch_sizey: 50,
     plot_sizex: 50,
     plot_sizey: 50,
+    plot_img: "/static/mendelian/plot_img.jpg"
   };
 
   window.game_objects = window.game_objects || {};
