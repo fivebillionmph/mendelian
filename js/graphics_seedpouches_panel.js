@@ -49,7 +49,9 @@ SeedPouchesPanel.prototype.buildScrollPanel = function(properties, bounds, panel
 }
 
 SeedPouchesPanel.prototype.buildSeedPouchPanels = function(seed_pouches, properties, bounds, panel){
+  var seed_pouch_panels = [];
   for(var i = 0; i < seed_pouches.length; i++){
-    
+    seed_pouch_panels.push(new SeedPouchPanel(seed_pouches[i], properties, bounds, i);
   }
+  return seed_pouch_panels;
 }
