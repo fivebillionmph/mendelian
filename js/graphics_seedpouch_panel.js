@@ -9,3 +9,7 @@ function SeedPouchPanel(seed_pouch, properties){
     this.spawnSeedPouchDetails();
   }
 }
+
+SeedPouchPanel.prototype.spawnSeedPouchDetails = function(){
+  
+}
