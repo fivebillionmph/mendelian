@@ -7,7 +7,7 @@
 
 .main-panel{
   position: absolute;	/* to set exact coordinates in divs */
-  overflow: auto;	/* to allow scrolling within divs */
+  overflow: scroll;	/* to allow scrolling within divs */
   max-height: 390px;	/* if height goes above this, then it will scroll */
   height: 390px;
   top: 5px;
@@ -27,4 +27,8 @@
 #center-panel{
   width: 390px;
   left: 205px;
+}
+
+.content-panel{
+  width: 100%;
 }
