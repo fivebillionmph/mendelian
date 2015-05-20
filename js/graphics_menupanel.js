@@ -1,4 +1,4 @@
-function MenuPanel(menu_objects, menu_column, states){
+function MenuPanel(menu_objects, menu_column, states, properties){
   this.menu_objects = menu_objects;
   this.menu_column = menu_column;
   this.states = states;

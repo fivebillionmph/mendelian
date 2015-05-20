@@ -8,7 +8,13 @@ function random1(){
 
 (function(){
   window.game_objects = window.game_objects || {};
-  window.game_objects.menu = new Menu();
+
+  window.game_objects.properties = {
+
+  };
+
+
+  window.game_objects.menu_objects = new Menu();
 }());
 
 /*
