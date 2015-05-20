@@ -1,3 +1,3 @@
-function MenuState(update_fun){
-  this.update = update_fun
+function MenuState(render_fun){
+  this.render = render_fun;
 }

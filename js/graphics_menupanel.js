@@ -6,8 +6,8 @@ function MenuPanel(menu_objects, menu_column, states, properties){
   this.current_state = states[0];
 }
 
-MenuPanel.prototype.update = function(){
-  this.current_state.update(this.menu_objects, this.menu_column, this.properties, this);
+MenuPanel.prototype.render = function(){
+  this.current_state.render(this.menu_objects, this.menu_column, this.properties, this);
 }
 
 MenuPanel.prototype.changeState = function(idx){
