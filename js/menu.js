@@ -3,6 +3,7 @@ function Menu(){
 // holds the plots and seed pouches and draws them to the screen
   this.seed_pouches = [];
   this.plots = [];
+  this.seed_pouch_builder = new SeedPouchBuilder();
 }
 
 Menu.prototype.addSeedPouch = function(seed_pouch){

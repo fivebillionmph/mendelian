@@ -15,7 +15,6 @@ function random1(){
 
 
   window.game_objects.menu_objects = new Menu();
-  window.game_objects.seed_pouch_builder = new SeedPouchBuilder();
 }());
 
 /*
