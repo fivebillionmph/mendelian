@@ -5,7 +5,7 @@
   position: relative;
 }
 
-.main-panel{
+.back-panel{
   position: absolute;	/* to set exact coordinates in divs */
   overflow: scroll;	/* to allow scrolling within divs */
   max-height: 390px;	/* if height goes above this, then it will scroll */
