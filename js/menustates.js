@@ -1,4 +1,5 @@
 $(function(){
+  // state0 **************************************************
   state0 = function(menu_objects, menu_column, properties, parent_panel){
     var seed_pouches = menu_objects.seed_pouches;
   }
