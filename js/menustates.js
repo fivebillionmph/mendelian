@@ -7,6 +7,7 @@ $(function(){
     var sp_props = getSPProperties(properties, column_width);
  
     // draw seed pouches
+    menu_column.height(sp_props.full_size_height * (Math.floor(seed_pouches.length / sp_props.n_per_row)));
     for(var i = 0; i < seed_pouches.length; i++){
       addSeedPouch(seed_pouches[i], i, sp_props, menu_column, parent_menu);
     }
@@ -40,7 +41,7 @@ $(function(){
     var top_offset = (row - 1) * sp_props.full_size_height + sp_props.border;
     var left_offset = (column - 1) * sp_props.full_size_width + sp_props.border;
     var on_click_fun = onClickFun(seed_pouch, parent_menu);	// need to implement
-    $("<div/>", {
+    var seed_pouch_div = $("<div/>", {
       css: {
         position: "absolute",
         top: top_offset,
@@ -49,8 +50,15 @@ $(function(){
         height: sp_props.height
       },
       onClick: on_click_fun,
-    }
+    }).appendTo(menu_column);
+    $("<img/>", {
+      src: sp_props.image
+    }).appendTo(seed_pouch_div);
   };
+
+  var onClickFun(seed_pouch, parent_menu){
+    // need to implement and change update function so that it can accept an optional argument
+  }
 
   var left_panel_states = [
     new MenuState(state0),
