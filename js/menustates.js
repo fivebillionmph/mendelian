@@ -18,21 +18,27 @@ $(function(){
     var height = properties.seed_pouch_height;
     var image = properties.seed_pouch_image;
     var border = properties.seed_pouch_border;
-    var full_size = width + (border * 2);
-    var n_per_row = Math.floor(column_width / full_size);
+    var full_size_width = width + (border * 2);
+    var full_size_height = height + (border * 2);
+    var n_per_row = Math.floor(column_width / full_size_width);
 
     var bounds = {
       width: width,
       height: height,
       image: image,
       border: border,
-      full_size: full_size,
+      full_size_width: full_size_width,
+      full_size_height: full_size_height,
       n_per_row: n_per_row
-    }
+    };
     return bounds;
   };
 
   var addSeedPouch = function(seed_pouch, idx, sp_props, menu_column){
+    var column = (idx + 1) % sp_props.n_per_row;
+    var row = Math.floor(idx / sp_props.n_per_row);
+    var top_offset = (row - 1) * sp_props.full_size_height;
+    var left_offset = (column - 1) * sp_props.full_size_width;
     
   };
 
