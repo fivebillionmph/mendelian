@@ -14,6 +14,14 @@ $(function(){
   };
 
 
+
+  var state1 = function(menu_objects, menu_column, properties, parent_menu, optionals){
+
+  }
+
+
+
+
   var getSPProperties = function(properties, column_width){
     var width = properties.seed_pouch_width;
     var height = properties.seed_pouch_height;
@@ -58,6 +66,9 @@ $(function(){
 
   var onClickFun(seed_pouch, parent_menu){
     // need to implement and change update function so that it can accept an optional argument
+    var on_click_fun = function(){
+      parent_menu.seed_pouches.changeState(window.game_objects.menu_states.seed_pouches.single);
+    }
   }
 
   var left_panel_states = [
