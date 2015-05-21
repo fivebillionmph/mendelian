@@ -1,5 +1,4 @@
 $(function(){
-  // state0 **************************************************
   var state0 = function(menu_objects, menu_column, properties, parent_menu){
     // get properties
     var seed_pouches = menu_objects.seed_pouches;
@@ -13,15 +12,13 @@ $(function(){
     }
   };
 
-
-
   var state1 = function(menu_objects, menu_column, properties, parent_menu, optionals){
-
+    var seed_pouch = optionals;
   }
 
 
 
-
+  // helper functions **************************************************
   var getSPProperties = function(properties, column_width){
     var width = properties.seed_pouch_width;
     var height = properties.seed_pouch_height;
@@ -64,15 +61,18 @@ $(function(){
     }).appendTo(seed_pouch_div);
   };
 
-  var onClickFun(seed_pouch, parent_menu){
+  var onClickFun = function(seed_pouch, parent_menu){
     // need to implement and change update function so that it can accept an optional argument
     var on_click_fun = function(){
-      parent_menu.seed_pouches.changeState(window.game_objects.menu_states.seed_pouches.single);
+      parent_menu.seed_pouches.changeState(window.game_objects.menu_states.seed_pouches_single);
     }
+    return on_click_fun;
   }
 
-  var left_panel_states = [
+  var seed_pouches_panel_states = [
     new MenuState(state0),
     new MenuState(state1)
   ];
+
+  
 });

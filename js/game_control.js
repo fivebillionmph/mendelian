@@ -28,4 +28,6 @@ function random1(){
     slots_single: 2,
     seed_pouches_builder: 0
   };
+
+  window.game_objects.menu_panels = {};
 }());
