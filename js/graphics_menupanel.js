@@ -11,6 +11,7 @@ MenuPanel.prototype.render = function(optionals){
   this.current_state.render(this.menu_objects, this.menu_column, this.properties, this, optionals);
 }
 
-MenuPanel.prototype.changeState = function(idx){
+MenuPanel.prototype.changeState = function(idx, optionals){
   this.current_states = states[idx];
+  this.render(optionals);
 }
