@@ -13,7 +13,8 @@ $(function(){
     seed_pouch_width: 50,
     seed_pouch_height: 50,
     seed_pouch_image: "images/seed_pouch_image.png",
-    seed_pouch_border: 5
+    seed_pouch_border: 5,
+    panel_height: 390
   };
 
 
