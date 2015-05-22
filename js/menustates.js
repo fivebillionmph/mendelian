@@ -1,4 +1,4 @@
-$(function(){
+function states_builder_seed_pouches(){
   var state0 = function(menu_objects, menu_column, properties, parent_menu){
     // get properties
     var seed_pouches = menu_objects.seed_pouches;
@@ -74,5 +74,5 @@ $(function(){
     new MenuState(state1)
   ];
 
-  
-});
+  window.game_objects.menu_panels.seed_pouches = new Menu(window.menu_objects, $("inner-left-panel"), seed_pouches_panel_states, window.game_objects.properties, window.game_objects.menu_panels);
+}

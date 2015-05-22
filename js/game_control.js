@@ -6,7 +6,7 @@ function random1(){
   return Math.random();
 }
 
-(function(){
+$(function(){
   window.game_objects = window.game_objects || {};
 
   window.game_objects.properties = {
@@ -30,4 +30,8 @@ function random1(){
   };
 
   window.game_objects.menu_panels = {};
-}());
+
+  states_builder_seed_pouches();
+  states_builder_plots();
+  states_builder_seed_pouches_buider();
+});
