@@ -14,11 +14,21 @@ function states_builder_seed_pouches(){
 
   var state1 = function(menu_objects, menu_column, properties, parent_menu, optionals){
     var seed_pouch = optionals;
-  }
+    var column_wdith = menu_column.width();
+    var sps_props = getSPSingleProperties(properties, column_width);
+    menu_column.height(sps_props.full_height);
+  };
 
 
 
   // helper functions **************************************************
+  var getSPSingleProperties = function(properties, column_width){
+    var bounds = {
+      full_height: properties.panel_height,
+    };
+  }
+
+
   var getSPProperties = function(properties, column_width){
     var width = properties.seed_pouch_width;
     var height = properties.seed_pouch_height;
