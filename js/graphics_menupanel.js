@@ -9,6 +9,7 @@ function MenuPanel(menu_objects, menu_column, states, properties, parent_menu){
 
 MenuPanel.prototype.render = function(optionals){
   // optionals is up to the render function if it wants to handle it
+  this.menu_column.empty();
   this.current_state.render(this.menu_objects, this.menu_column, this.properties, this.parent_menu, optionals);
 }
 
