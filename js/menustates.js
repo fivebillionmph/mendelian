@@ -24,7 +24,7 @@ function states_builder_seed_pouches(){
   // helper functions **************************************************
   var getSPSingleProperties = function(properties, column_width){
     var bounds = {
-      full_height: properties.panel_height,
+      full_height: properties.panel_height
     };
   }
 
