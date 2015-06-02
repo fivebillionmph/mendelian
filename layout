@@ -1,0 +1,42 @@
+=====current layout=====
+
+
+window.game_objects = {
+  properties: {...},
+  menu_objects: {
+    seed_pouches: [...],
+    plots: [...],
+    seed_pouch_builder: {...}
+  },
+  menu_panels = {...}
+};
+
+
+
+
+
+=====new layout=====
+
+
+models = {
+  data: {
+    properties: {...},
+    seed_pouches: [...],
+    plots: [...],
+    seed_pouch_builder: {...}
+  },
+  views: views,
+  notifyViews: function(){...},
+};
+
+views = {
+  models: models,
+  controller: controller,
+  seed_pouch_panel: new SeedPouchPanel(),
+  plots_panel: new PlotsPanel(),
+  seed_pouch_builder_panel: new SeedPouchBuilderPanel()
+};
+
+controller = {
+  models: models,
+};
