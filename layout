@@ -39,4 +39,5 @@ views = {
 
 controller = {
   models: models,
+  variousFunctionsCalledFromViews: function(){...}
 };
