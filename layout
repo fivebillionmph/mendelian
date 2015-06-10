@@ -25,19 +25,18 @@ models = {
     plots: [...],
     seed_pouch_builder: {...}
   },
-  views: views,
-  notifyViews: function(){...},
+  observers: [views, controller],
+  notifyObservers: function(){...}
 };
 
 views = {
   models: models,
   controller: controller,
-  seed_pouch_panel: new SeedPouchPanel(),
-  plots_panel: new PlotsPanel(),
-  seed_pouch_builder_panel: new SeedPouchBuilderPanel()
+  view_handler: new ViewHandler(models, controller)
 };
 
 controller = {
   models: models,
+  views: views,
   variousFunctionsCalledFromViews: function(){...}
 };
