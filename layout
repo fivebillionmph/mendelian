@@ -40,3 +40,13 @@ controller = {
   views: views,
   variousFunctionsCalledFromViews: function(){...}
 };
+
+view
+  every view will have functions that listen to the controller and models
+  every view will have default onClick, onHover, etc...
+view example:
+SeedPouchView = function(controller, models){
+  this.controller = controller;
+  this.models = models;
+  this
+}
