@@ -1,0 +1,13 @@
+events
+	each event it receives will be a string and an object
+		the string is the type of event and is what the controller will react to
+		the object can be NULL or an object that is needed for processing the event
+
+	"open_single_seed_pouch"
+		{seed_pouch: SeedPouch}
+	"delete_seed_pouch"
+		{seed_pouch: SeedPouch}
+	"close_single_seed_pouch"
+		NULL
+	"save_seed_pouch_changes"
+		{seed_pouch: SeedPouch, note: String}
